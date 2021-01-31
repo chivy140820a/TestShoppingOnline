@@ -1,0 +1,186 @@
+﻿@model WebTestShopOnline.Page.PagedResult<WebTestShopOnline.CartToBuy.CartItem>
+
+@{
+    ViewData["Title"] = "GetAllCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = ViewBag.User;
+}
+@section Scripts{
+    <script src="~/JsWeb/cartcontrollers.js" asp-append-version="true"></script>
+}
+
+<html lang="en">
+<body>
+   
+    <!-- Header End====================================================================== -->
+    <div id="mainBody">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar ================================================== -->
+                @await Component.InvokeAsync("Category", 1)
+                <!-- Sidebar end=============================================== -->
+                <div class="span9">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                        <li class="active"> SHOPPING CART</li>
+                    </ul>
+                    <h3>  SHOPPING CART [ <small>3 Item(s) </small>]<a asp-controller="Home" asp-action="Index" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>
+                    <hr class="soft" />
+                    <table class="table table-bordered">
+                        <tr><th> I AM ALREADY REGISTERED  </th></tr>
+                        <tr>
+                            <td>
+                                @if (user == null)
+                                {
+                                    <form class="form-horizontal">
+                                        <div class="control-group">
+                                            <label class="control-label" for="txtUserName">Username</label>
+                                            <div class="controls">
+                                                <input type="text" id="txtUserName" placeholder="Username">
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="txtPassword">Password</label>
+                                            <div class="controls">
+                                                <input type="password" id="txtPassword" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <button type="submit" id="txtXnLogin" class="btn">Đăng Nhập</button> OR <a href="register.html" class="btn">Register Now!</a>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <a href="forgetpass.html" style="text-decoration:underline">Forgot password ?</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                }
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Color</th>
+                                <th>Quantity/Update</th>
+                                <th>Price</th>
+                                <th>LastPrice</th>
+                                <th>TotalProduct</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model.Items)
+                            {
+                                <tr>
+                                    <td> <img width="60" src="~/user-content/@product.Product.PathImage" alt="" /></td>
+                                    <td><input type="text" name="name" value="@product.Color" /></td>
+                                    <td>
+                                        <div class="input-append"><input class="span1" data-id="@product.Product.Id" style="max-width:34px" placeholder="@product.Quantity" id="appendedInputButtons" size="16" type="text"><button class="btn txtRemoveUpdate" type="button" data-id="@product.Product.Id"><i class="icon-minus"></i></button><button class="btn txtaddUpdate" type="button"  data-id="@product.Product.Id"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button" id="txtdangerall" data-id="@product.Product.Id"><i class="icon-remove icon-white"></i></button></div>
+                                    </td>
+                                    <td>$@product.Product.Price</td>
+                                    <td>$@product.Product.LastPrice</td>
+                                    <td>$@await Component.InvokeAsync("TotalProduct", product.Product.Id)</td>
+                                    <td>Active</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="6" style="text-align:right">Total Price:	</td>
+                                <td> $@await Component.InvokeAsync("TotalPriceCart") </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" style="text-align:right">Total LastpRice :	</td>
+                                <td> $@await Component.InvokeAsync("TotalPriceCart")</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" style="text-align:right"><strong>Tổng Tiền</strong></td>
+                                <td class="label label-important" style="display:block"> <strong> $@await Component.InvokeAsync("TotalPriceCart")</strong></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                    <button id="txtUpdateAllQuantity">Cập nhập tất cả</button>
+                    <button id="txtDeleteAll">Xóa tất cả</button>
+
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <form class="form-horizontal">
+                                        <div class="control-group">
+                                            <label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium" placeholder="CODE">
+                                                <button type="submit" class="btn"> ADD </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered">
+                        <tr><th>Thông tin mua hàng</th></tr>
+                        <tr>
+                            <td>
+                                <form class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label" for="txtNameOrder">Name</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtNameOrder" placeholder="Tên">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="txtPhoneOrder">Phone</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtPhoneOrder" placeholder="Số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="txtEmailOrder">Email</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtEmailOrder" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="txtAdressOrder">Adress</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtAdressOrder" placeholder="Địa chỉ">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="txtContactOrder">Contact</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtContactOrder" placeholder="Ghi chú">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button type="submit" id="txtXnCreatOrder" class="btn">Xác nhận</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                    <a class="button-group" asp-controller="Cart" asp-action="CartBuy" id="txtBuyShoppingOnline">Mua hàng</a>
+
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+                    <a asp-controller="Login" asp-action="Login" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,34 @@
+﻿@model WebTestShopOnline.BackendAPI.RoleAPI.RoleAssignRequest.ListRoleItem
+
+@{
+    ViewData["Title"] = "RoleAssign";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RoleAssign">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <div class="form-group">
+                    <label>
+                        @Model.Items[i].Name
+                        <input type="checkbox" asp-for="Items[i].Selected" />
+                        <input type="hidden" asp-for="Items[i].Id" />
+                        <input type="hidden" asp-for="Items[i].Name" />
+                    </label>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Gán quyền" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Trở về trang chủ người dùng</a>
+</div>
+

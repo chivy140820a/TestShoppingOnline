@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "_ProductAdmin";
+    Layout =null;
+}
+<div class="modal" tabindex="-1" role="dialog" id="txtProductFormUpdate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="txtName">Name</label>
+                        <input type="email" class="form-control" id="txtName">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPrice">Price</label>
+                        <input type="email" class="form-control" id="txtPrice">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLastPrice">LastPrice</label>
+                        <input type="email" class="form-control" id="txtLastPrice">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txtImage">Image</label>
+                        <input type="file" class="form-control" id="txtImage">
+
+                    </div>
+                    <div id="productImageUpdate">
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="txtXn">Cập nhập</button>
+            </div>
+        </div>
+    </div>
+</div>

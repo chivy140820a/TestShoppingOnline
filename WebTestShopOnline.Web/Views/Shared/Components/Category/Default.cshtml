@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+    var listelectronic = (List<WebTestShopOnline.Entity.Product>)ViewBag.ListCategoryElectronic;
+    var listclother = (List<WebTestShopOnline.Entity.Product>)ViewBag.ListCategoryClother;
+    var productImage = (List<WebTestShopOnline.Entity.Product>)ViewBag.ImageAdmin;
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+
+
+<div id="sidebar" class="span3">
+    <div class="well well-small"><a id="myCart"><img src="/themes/images/ico-cart.png" alt="cart">@await Component.InvokeAsync("Cart") <span> Items in your cart </span> <span class="badge badge-warning pull-right">$@await Component.InvokeAsync("TotalPriceCart")</span></a></div>
+    <ul id="sideManu" class="nav nav-tabs nav-stacked">
+        <li class="subMenu open">
+            <a localize-content asp-route-culture="@culture"> ELECTRONICS</a>
+            <ul>
+                @foreach (var product in listelectronic)
+                {
+                    <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>@product.Name </a></li>
+                }
+
+            </ul>
+        </li>
+        <li class="subMenu">
+            <a localize-content asp-route-culture="@culture"> CLOTHES </a>
+            <ul style="display:none">
+                @foreach (var product1 in listclother)
+                {
+                    <li><a href="products.html"><i class="icon-chevron-right"></i>@product1.Name</a></li>
+                }
+
+            </ul>
+        </li>
+        <li class="subMenu">
+            <a localize-content asp-route-culture="@culture">FOOD AND BEVERAGES</a>
+            <ul style="display:none">
+                <li><a href="products.html"><i class="icon-chevron-right"></i>Angoves  (35)</a></li>
+                <li><a href="products.html"><i class="icon-chevron-right"></i>Bouchard Aine & Fils (8)</a></li>
+                <li><a href="products.html"><i class="icon-chevron-right"></i>French Rabbit (5)</a></li>
+                <li><a href="products.html"><i class="icon-chevron-right"></i>Louis Bernard  (45)</a></li>
+                <li><a href="products.html"><i class="icon-chevron-right"></i>BIB Wine (Bag in Box) (8)</a></li>
+                <li><a href="products.html"><i class="icon-chevron-right"></i>Other Liquors & Wine (5)</a></li>
+                <li><a href="products.html"><i class="icon-chevron-right"></i>Garden (3)</a></li>
+                <li><a href="products.html"><i class="icon-chevron-right"></i>Khao Shong (11)</a></li>
+            </ul>
+        </li>
+        <li><a localize-content asp-route-culture="@culture">HEALTH & BEAUTY</a></li>
+        <li><a localize-content asp-route-culture="@culture">SPORTS & LEISURE</a></li>
+        <li><a localize-content asp-route-culture="@culture">BOOKS & ENTERTAINMENTS</a></li>
+    </ul>
+    <br />
+    <div class="thumbnail">
+        <img src="/themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera" />
+        <div class="caption">
+            <h5>Panasonic</h5>
+            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+        </div>
+    </div><br />
+    @foreach (var product3 in productImage)
+    {
+        <div class="thumbnail">
+            <img src="/user-content/@product3.PathImage" title="Bootshop New Kindel" alt="Bootshop Kindel">
+            <div class="caption">
+                <h5>@product3.Name</h5>
+                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="/Cart/AddCart/@product3.Id&&1&&Black">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+            </div>
+        </div><br />
+    }
+
+
+</div>

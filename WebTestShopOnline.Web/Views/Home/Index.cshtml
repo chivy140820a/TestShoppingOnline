@@ -1,0 +1,193 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var listslight = (List<WebTestShopOnline.Entity.Slight>)ViewBag.ListSight;
+    var slightadmin = (WebTestShopOnline.Entity.Slight)ViewBag.SlightAdmin;
+    var listMA = (List<WebTestShopOnline.Entity.Product>)ViewBag.ListMA;
+    var listTN = (List<WebTestShopOnline.Entity.Product>)ViewBag.ListTN;
+    var listG = (List<WebTestShopOnline.Entity.Product>)ViewBag.ListG;
+    var listLateProduct = (List<WebTestShopOnline.Entity.Product>)ViewBag.ListLastProduct;
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+
+<div id="carouselBlk">
+    <div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner">
+
+            <div class="item active">
+                <div class="container">
+                    <a href="register.html"><img style="width:100%" src="/user-content/@slightadmin.PathImage" alt="special offers" /></a>
+                    <div class="carousel-caption">
+                        <h4>Second Thumbnail label</h4>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    </div>
+                </div>
+            </div>
+            @foreach (var slight in listslight)
+            {
+                <div class="item">
+                    <div class="container">
+                        <a href="/Product/ProductDetail/4"><img style="width:100%" src="/user-content/@slight.PathImage" alt="" /></a>
+                        <div class="carousel-caption">
+                            <h4>Second Thumbnail label</h4>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+</div>
+<div id="mainBody">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar ================================================== -->
+            @await Component.InvokeAsync("Category", 1)
+            <!-- Sidebar end=============================================== -->
+            <div class="span9">
+                <div class="well well-small">
+                    <h4><span localize-content asp-route-culture="@culture" >Featured Products</span> <small class="pull-right">200+ featured products</small></h4>
+                    <div class="row-fluid">
+                        <div id="featured" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <ul class="thumbnails">
+                                        @foreach (var product1 in listMA)
+                                        {
+                                            <li class="span3">
+                                                <div class="thumbnail">
+                                                    <i class="tag"></i>
+                                                    <a href="/Product/ProductDetail/@product1.Id"><img src="/user-content/@product1.PathImage" alt=""></a>
+                                                    <div class="caption">
+                                                        <h5>@product1.Name</h5>
+                                                        <h4><a class="btn" href="/Product/ProductDetail/@product1.Id">VIEW</a> <span class="pull-right">@product1.LastPrice</span></h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <ul class="thumbnails">
+                                        @foreach (var product2 in listTN)
+                                        {
+                                            <li class="span3">
+                                                <div class="thumbnail">
+                                                    <i class="tag"></i>
+                                                    <a href="/Product/ProductDetail/@product2.Id"><img src="/user-content/@product2.PathImage" alt=""></a>
+                                                    <div class="caption">
+                                                        <h5>@product2.Name</h5>
+                                                        <h4><a class="btn" href="/Product/ProductDetail/@product2.Id">VIEW</a> <span class="pull-right">@product2.LastPrice</span></h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <ul class="thumbnails">
+                                        @foreach (var product3 in listG)
+                                        {
+                                            <li class="span3">
+                                                <div class="thumbnail">
+                                                    <a href="/Product/ProductDetail/@product3.Id"><img src="/user-content/@product3.PathImage" alt=""></a>
+                                                    <div class="caption">
+                                                        <h5>@product3.Name</h5>
+                                                        <h4><a class="btn" href="/Product/ProductDetail/@product3.Id">VIEW</a> <span class="pull-right">@product3.LastPrice</span></h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <ul class="thumbnails">
+                                        @foreach (var product4 in listG)
+                                        {
+                                            <li class="span3">
+                                                <div class="thumbnail">
+                                                    <a href="/Product/ProductDetail/@product4.Id"><img src="/user-content/@product4.PathImage" alt=""></a>
+                                                    <div class="caption">
+                                                        <h5>@product4.Name</h5>
+                                                        <h4><a class="btn" href="/Product/ProductDetail/@product4.Id">VIEW</a> <span class="pull-right">@product4.LastPrice</span></h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+                            <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+                        </div>
+                    </div>
+                </div>
+                <h4 localize-content asp-route-culture="@culture">Latest Products </h4>
+                <ul class="thumbnails">
+                    @foreach (var product5 in listLateProduct)
+                    {
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a href="/Product/ProductDetail/@product5.Id"><img src="/user-content/@product5.PathImage" alt="" /></a>
+                                <div class="caption">
+                                    <h5>@product5.Name</h5>
+                                    <p>
+                                        Lorem Ipsum is simply dummy text.
+                                    </p>
+
+                                    <h4 style="text-align:center"><a class="btn" href="/Product/ProductDetail/@product5.Id"> <i class="icon-zoom-in"></i></a> <a class="btn" href="/Cart/AddCart/@product5.Id&&1&&'Black'">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@product5.LastPrice</a></h4>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer ================================================================== -->
+<div id="footerSection">
+    <div class="container">
+        <div class="row">
+            <div class="span3">
+                <h5>ACCOUNT</h5>
+                <a href="login.html">YOUR ACCOUNT</a>
+                <a href="login.html">PERSONAL INFORMATION</a>
+                <a href="login.html">ADDRESSES</a>
+                <a href="login.html">DISCOUNT</a>
+                <a href="login.html">ORDER HISTORY</a>
+            </div>
+            <div class="span3">
+                <h5>INFORMATION</h5>
+                <a href="contact.html">CONTACT</a>
+                <a href="register.html">REGISTRATION</a>
+                <a href="legal_notice.html">LEGAL NOTICE</a>
+                <a href="tac.html">TERMS AND CONDITIONS</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <div class="span3">
+                <h5>OUR OFFERS</h5>
+                <a href="#">NEW PRODUCTS</a>
+                <a href="#">TOP SELLERS</a>
+                <a href="special_offer.html">SPECIAL OFFERS</a>
+                <a href="#">MANUFACTURERS</a>
+                <a href="#">SUPPLIERS</a>
+            </div>
+            <div id="socialMedia" class="span3 pull-right">
+                <h5>SOCIAL MEDIA </h5>
+                <a href="#"><img width="60" height="60" src="/themes/images/facebook.png" title="facebook" alt="facebook" /></a>
+                <a href="#"><img width="60" height="60" src="/themes/images/twitter.png" title="twitter" alt="twitter" /></a>
+                <a href="#"><img width="60" height="60" src="/themes/images/youtube.png" title="youtube" alt="youtube" /></a>
+            </div>
+        </div>
+        <p class="pull-right">&copy; Bootshop</p>
+    </div><!-- Container End -->
+</div>

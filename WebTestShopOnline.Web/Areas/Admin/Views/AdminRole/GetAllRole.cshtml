@@ -1,0 +1,48 @@
+﻿@model WebTestShopOnline.Page.PagedResult<WebTestShopOnline.BackendAPI.RoleAPI.ModelRoleAPI.ModelRole>
+
+@{
+    ViewData["Title"] = "GetAllRole";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Footer{
+    <script src="~/admin/jsadmin/roleadmincontrol.js" asp-append-version="true"></script>
+    <link href="~/lib/jqueryui/jquery-ui.theme.min.css" rel="stylesheet" />
+    <script src="~/lib/jqueryui/jquery-ui.js" asp-append-version="true"></script>
+    <script src="~/lib/mustache.js/mustache.min.js" asp-append-version="true"></script>
+    <script src="~/admin/jsRepository/FindAutoRoleAdminControl.js" asp-append-version="true"></script>
+    <script src="~/admin/jsadmin/useradmincontrol.js" asp-append-version="true"></script>
+}
+<input type="text" id="txtKeyword" name="name" />
+<button id="txtfind" class="btn btn-primary">Tìm kiếm</button>
+<button class="btn btn-primary " id="txtCreatAdminRole">Tạo mới</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <button class="btn btn-primary txtUpdateadmin" data-id="@item.Name">Cập nhập</button>
+                    <button class="btn btn-danger txtDeleteAdmin" data-id="@item.Name">Xóa</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@await Html.PartialAsync("~/Areas/Admin/Views/_RoleAdmin.cshtml")

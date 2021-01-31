@@ -1,0 +1,95 @@
+﻿<div class="modal" tabindex="-1" role="dialog" id="txtFormUpdate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="txtName">Name</label>
+                        <input type="text" class="form-control" id="txtName">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNewName">NewName</label>
+                        <input type="text" class="form-control" id="txtNewName">
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="txtUpdate">Xác nhận</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="txtFormDelete">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="txtNameDelete">Name</label>
+                        <input type="text" class="form-control" id="txtNameDelete">
+                    </div>
+                    
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="txtDelete">Xác nhận</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="txtFormCreat">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="txtform">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                
+                            </tr>
+                        </thead>
+
+                        <tbody id="btlTestNewCreatListTest"></tbody>
+                    </table>
+                    <script id="data-template-Test-CreatTest" type="x-tmpl-mustache">
+                              <tr>
+                                <td><input type="text" class="txtlistnameTest"  data-id="{{ID}}" value="{{Name}}" /></td>
+                               
+                                <td>
+                                  <button class="txtdeleteTest" data-id="{{ID}}">Delete</button>
+                                </td>
+                              </tr>
+                    </script>
+                    <button type="button" class="txtAddCreatTest">Add</button>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="txtXn">Xác nhận</button>
+
+                </div>
+            </div>
+    </div>
+</div>

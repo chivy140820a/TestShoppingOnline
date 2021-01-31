@@ -1,0 +1,38 @@
+﻿@model WebTestShopOnline.BackendAPI.ProductAPI.ModelProductAPI.ListProductItem
+
+@{
+    ViewData["Title"] = "ProductAssign";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ProductAssign</h1>
+
+<h4>ListProductItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ProductAssign">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <div class="form-group">
+                    <label>
+                        @Model.Items[i].Name
+                        <input type="checkbox" asp-for="Items[i].Selected" />
+                        <input type="hidden" asp-for="Items[i].Id" />
+                        <input type="hidden" asp-for="Items[i].Name" />
+                    </label>
+                </div>
+             }
+
+            <div class="form-group">
+                <input type="submit" value="Gán danh mục" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Trở về trang chủ người dùng</a>
+</div>
+
